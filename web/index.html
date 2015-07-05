@@ -4,10 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="app/css/style.css" />
     <title>Elokuvakirjasto</title>
   </head>
-  <body>
+  <body ng-app="MovieApp">
     <h1>Be amazed!</h1>
+    <ul>
+        <li><a ng-href="#/movies">leffat</a></li>
+        <li><a ng-href="#/movies/new">uus leffa</a></li>
+    </ul>
+    
+    <div ng-view></div>
 
     <!-- Hyödyllisiä kirjastoja -->
     <script src="bower_components/angular/angular.min.js"></script>
@@ -16,6 +23,9 @@
     <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
 
     <!-- Linkitä omat tiedostosi tähän (huomaa, että polun juuri on web-kansio!) -->
-    <script src="app/app.js"></script>    
+    <script src="app/app.js"></script>
+    <script src="app/services/movie_service.js"></script>
+    <script src="app/controllers/list_controller.js"></script>
+    <script src="app/controllers/new_movie_controller.js"></script>
   </body>
 </html>

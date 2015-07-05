@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Director</th>
+        <th>Year</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="movie in movies | orderBy: 'name'">
+        <td>{{movie.name}}</td>
+        <td>{{movie.director}}</td>
+        <td>{{movie.year}}</td>
+        <td>{{movie.description}}</td>
+        <td><button ng-click="removeMovie(movie)">Remove</button></td>
+    </tr>
+</table>

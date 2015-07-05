@@ -5,26 +5,78 @@ describe('Movie list', function(){
 
   	beforeEach(function(){
   		// Lisää moduulisi nimi tähän
-    	module('MyAwesomeModule');
+            module('MovieApp');
 
-    	FirebaseServiceMock = (function(){
-			return {
-				// Toteuta FirebaseServicen mockatut metodit tähän
-			}
-		})();
+            FirebaseServiceMock = (function(){
+                var movies = [
+                    {
+                        'name': 'movie1',
+                        'director': 'director1',
+                        'year': 2001,
+                        'description': 'movie1 is awesome'
+                    },
+                    {
+                        'name': 'movie2',
+                        'director': 'director2',
+                        'year': 2002,
+                        'description': 'movie2 is awesome'
+                    },
+                    {
+                        'name': 'movie3',
+                        'director': 'director3',
+                        'year': 2003,
+                        'description': 'movie3 is awesome'
+                    },
+                    {
+                        'name': 'movie4',
+                        'director': 'director4',
+                        'year': 2004,
+                        'description': 'movie4 is awesome'
+                    },
+                    {
+                        'name': 'movie5',
+                        'director': 'director5',
+                        'year': 2005,
+                        'description': 'movie5 is awesome'
+                    },
+                    {
+                        'name': 'movie6',
+                        'director': 'director6',
+                        'year': 2006,
+                        'description': 'movie6 is awesome'
+                    }
+                ];
 
-		// Lisää vakoilijat
-	    // spyOn(FirebaseServiceMock, 'jokuFunktio').and.callThrough();
+                return {
+                    getMovies: function() {
+                        return movies;
+                    },
 
-    	// Injektoi toteuttamasi kontrolleri tähän
-	    inject(function($controller, $rootScope) {
-	      scope = $rootScope.$new();
-	      // Muista vaihtaa oikea kontrollerin nimi!
-	      controller = $controller('MyAwesomeController', {
-	        $scope: scope,
-	        FirebaseService: FirebaseServiceMock
-	      });
-	    });
+                    addMovie: function(movie) {
+                        movies.push(movie);
+                    },
+
+                    removeMovie: function(movie) {
+                        movies.splice(movies.indexOf(movie), 1);
+                    }
+                };
+            })();
+
+            spyOn(FirebaseServiceMock, 'getMovies').and.callThrough();
+            spyOn(FirebaseServiceMock, 'addMovie').and.callThrough();
+            spyOn(FirebaseServiceMock, 'removeMovie').and.callThrough();
+                    // Lisää vakoilijat
+                // spyOn(FirebaseServiceMock, 'jokuFunktio').and.callThrough();
+
+            // Injektoi toteuttamasi kontrolleri tähän
+            inject(function($controller, $rootScope) {
+              scope = $rootScope.$new();
+              // Muista vaihtaa oikea kontrollerin nimi!
+              controller = $controller('ListController', {
+                $scope: scope,
+                MovieService: FirebaseServiceMock
+              });
+            });
   	});
 
   	/*
@@ -37,7 +89,10 @@ describe('Movie list', function(){
   	* käyttämällä toBeCalled-oletusta.
   	*/ 
 	it('should list all movies from the Firebase', function(){
-		expect(true).toBe(false);
+            expect(scope.movies.length).toBe(6);
+            expect(scope.movies[0].name).toBe('movie1');
+            expect(scope.movies[5].name).toBe('movie6');
+            expect(FirebaseServiceMock.getMovies).toHaveBeenCalled();
 	});
 
 	/* 
@@ -46,6 +101,9 @@ describe('Movie list', function(){
   	* käyttämällä toBeCalled-oletusta.
 	*/
 	it('should be able to remove a movie', function(){
-		expect(true).toBe(false);
+            var movie = scope.movies[0];
+            scope.removeMovie(movie);
+            expect(scope.movies.length).toBe(5);
+            expect(FirebaseServiceMock.removeMovie).toHaveBeenCalled();
 	});
 });
