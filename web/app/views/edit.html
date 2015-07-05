@@ -1,0 +1,11 @@
+<form name="edit_movie">
+    <label for="name">Name: </label>
+    <input type="text" id="name" ng-model="name" name="name" required ng-pattern="/^.+$/"/><span class="invalid-input" ng-if="edit_movie.name.$invalid && edit_movie.name.$dirty">  Please enter a title for the film</span><br />
+    <label for="director">Director: </label>
+    <input type="text" id="director" ng-model="director" name="director" required/><span class="invalid-input" ng-if="edit_movie.director.$invalid && edit_movie.director.$dirty">  Please enter the name of the director</span><br />
+    <label for="year">Year: </label>
+    <input type="number" min="1878" step="1" id="year" ng-model="year" name="year" required publicationyear /><span class="invalid-input" ng-if="edit_movie.year.$invalid && edit_movie.year.$dirty">  Please enter the publication year (1878 - current year)</span><br />
+    <label for="description">Description: </label><span class="invalid-input" ng-if="edit_movie.description.$invalid && edit_movie.description.$dirty">  Please enter a description of the movie</span><br />
+    <textarea id="description" ng-model="description" name="description" required /></textarea><br />
+    <button type="submit" ng-click="editMovie()" ng-disabled="edit_movie.$invalid || edit_movie.$pristine">Save changes</button>
+</form>

@@ -7,7 +7,7 @@
         <th></th>
     </tr>
     <tr ng-repeat="movie in movies | orderBy: 'name'">
-        <td>{{movie.name}}</td>
+        <td><a ng-href="#/movies/{{movie.$id}}">{{movie.name}}</a></td>
         <td>{{movie.director}}</td>
         <td>{{movie.year}}</td>
         <td>{{movie.description}}</td>
