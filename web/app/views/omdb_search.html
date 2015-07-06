@@ -8,6 +8,7 @@
 </form>
 <p ng-if="movies == null && !searchOn;">Hakusanalla ei löytynyt elokuvia</p>
 <p ng-if="searchOn">Haku käynnissä, odota hetki</p>
+<p ng-if="searchTime > 9;">Haku kestää yllättävän kauan.<br/> Jostain syystä en ole saanut hakua vielä toimimaan Herokussa, vaikka se toimiikin moitteettomasti kehitysympäristössä. Ärsyttävää... <br>Jos osaat sanoa syyn, pistä vaikka <a href="mailto:petri.j.kallio@helsinki.fi?Subject=OMDb-haku%20ei%20toimi%20Herokussa">maililla</a>.</p>
 <div id='search_result' ng-if="movies.length > 0 && !searchOn;">
     <p>Haulla löytyi {{movies.length}} <ng-pluralize count="movies.length" when="{'one': 'elokuva', 'other': 'elokuvaa'}"></ng-pluralize></p>
     <table>
