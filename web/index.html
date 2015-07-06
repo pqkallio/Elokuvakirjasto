@@ -12,6 +12,7 @@
     <ul>
         <li><a ng-href="#/movies">leffat</a></li>
         <li><a ng-href="#/movies/new">uus leffa</a></li>
+        <li><a ng-href="#/omdb_search">hae OMDb:stä</a></li>
     </ul>
     
     <div ng-view></div>
@@ -25,9 +26,11 @@
     <!-- Linkitä omat tiedostosi tähän (huomaa, että polun juuri on web-kansio!) -->
     <script src="app/app.js"></script>
     <script src="app/services/movie_service.js"></script>
+    <script src="app/services/omdb_api_service.js"></script>
     <script src="app/controllers/list_controller.js"></script>
     <script src="app/controllers/new_movie_controller.js"></script>
     <script src="app/controllers/show_controller.js"></script>
     <script src="app/controllers/edit_controller.js"></script>
+    <script src="app/controllers/omdb_api_controller.js"></script>
   </body>
 </html>

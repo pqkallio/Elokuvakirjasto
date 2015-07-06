@@ -1,0 +1,23 @@
+<h1>Hae elokuvaa nimellä ja julkaisuvuodella</h1>
+<form name="search_form">
+    <label for="title">Nimi</label>
+    <input name="title" id="title" type="text" ng-model="name" /><br/>
+    <label for="year">Vuosi</label>
+    <input name="year" id="year" type="text" ng-model="year" /><br />
+    <button ng-click="findMovie()">Search</button>
+</form>
+<p ng-if="movies == null && !searchOn;">Hakusanalla ei löytynyt elokuvia</p>
+<p ng-if="searchOn">Haku käynnissä, odota hetki</p>
+<div id='search_result' ng-if="movies.length > 0 && !searchOn;">
+    <p>Haulla löytyi {{movies.length}} <ng-pluralize count="movies.length" when="{'one': 'elokuva', 'other': 'elokuvaa'}"></ng-pluralize></p>
+    <table>
+        <tr>
+            <th>Nimi</th>
+            <th>Vuosi</th>
+        </tr>
+        <tr ng-repeat="movie in movies | orderBy: 'name'">
+            <td><a ng-href="http://www.imdb.com/title/{{movie.imdbID}}">{{movie.Title}}</a></td>
+            <td>{{movie.Year}}</td>
+        </tr>
+    </table>
+</div>

@@ -1,5 +1,9 @@
 var MovieApp = angular.module('MovieApp', ['ngRoute', 'firebase']);
 
+MovieApp.config(['$httpProvider', function($httpProvider) {
+    delete $httpProvider.defaults.headers.common["X-Requested-With"];
+}]);
+
 MovieApp.config(function($routeProvider) {
     $routeProvider
     .when('/', {
@@ -21,6 +25,10 @@ MovieApp.config(function($routeProvider) {
     .when('/movies/:key/edit', {
         controller: 'EditController',
         templateUrl: 'app/views/edit.html'
+    })
+    .when('/omdb_search', {
+        controller: 'OmdbApiController',
+        templateUrl: 'app/views/omdb_search.html'
     })
     .otherwise({
         redirectTo: '/'
