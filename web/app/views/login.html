@@ -1,0 +1,10 @@
+<h1>Kirjaudu sisään tai rekisteröidy</h1>
+<p>{{message}}</p>
+<form name="login_form">
+    <label for="email">Sähköposti: </label>
+    <input id="email" type="text" ng-model="email"><br>
+    <label for="email">Salasana: </label>
+    <input id="password" type="password" ng-model="password"><br>
+    <button ng-click="logIn()">Kirjaudu</button>
+    <button ng-click="register()">Rekisteröidy</button>
+</form>

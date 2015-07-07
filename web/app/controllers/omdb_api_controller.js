@@ -5,6 +5,7 @@ MovieApp.controller('OmdbApiController', function($scope, OmdbApiService, $inter
     
     $scope.findMovie = function() {
         $scope.searchOn = true;
+        $scope.searchTime = 0;
         
         var count = $interval(function() {
             $scope.searchTime++;

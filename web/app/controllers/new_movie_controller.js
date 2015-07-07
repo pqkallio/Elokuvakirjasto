@@ -1,4 +1,8 @@
-MovieApp.controller('NewMovieController', function($scope, MovieService, $location) {
+MovieApp.controller('NewMovieController', function($scope, currentAuth, MovieService, $location) {
+    if (!currentAuth) {
+        $location.path('/login');
+    }
+    
     $scope.addMovie = function() {
         MovieService.addMovie({
             'name': $scope.name,

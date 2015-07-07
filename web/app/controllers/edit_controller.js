@@ -1,4 +1,8 @@
-MovieApp.controller('EditController', function($scope, MovieService, $routeParams, $location) {
+MovieApp.controller('EditController', function($scope, currentAuth, MovieService, $routeParams, $location) {
+    if (!currentAuth) {
+        $location.path('/login');
+    }
+    
     MovieService.getMovie($routeParams.key, function(data) {
         $scope.movie = data;
         $scope.name = data['name'];
