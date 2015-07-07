@@ -1,11 +1,20 @@
+<h1>Lisää elokuva</h1>
 <form name="new_movie">
-    <label for="name">Name: </label>
-    <input type="text" id="name" ng-model="name" name="name" required ng-pattern="/^.+$/"/><span class="invalid-input" ng-if="new_movie.name.$invalid && new_movie.name.$dirty">  Please enter a title for the film</span><br />
-    <label for="director">Director: </label>
-    <input type="text" id="director" ng-model="director" name="director" required/><span class="invalid-input" ng-if="new_movie.director.$invalid && new_movie.director.$dirty">  Please enter the name of the director</span><br />
-    <label for="year">Year: </label>
-    <input type="number" min="1878" step="1" id="year" ng-model="year" name="year" required publicationyear /><span class="invalid-input" ng-if="new_movie.year.$invalid && new_movie.year.$dirty">  Please enter the publication year (1878 - current year)</span><br />
-    <label for="description">Description: </label><span class="invalid-input" ng-if="new_movie.description.$invalid && new_movie.description.$dirty">  Please enter a description of the movie</span><br />
-    <textarea id="description" ng-model="description" name="description" required /></textarea><br />
-    <button type="submit" ng-click="addMovie()" ng-disabled="new_movie.$invalid">Add Movie</button>
+    <div class="form-group">
+        <label for="name">Nimi</label>
+        <input type="text" id="name" class="form-control" ng-model="name" name="name" required ng-pattern="/^.+$/"/><span class="text-danger" ng-if="new_movie.name.$invalid && new_movie.name.$dirty">  Syötä elokuvan nimi</span>
+    </div>
+    <div class="form-group">
+        <label for="director">Ohjaaja</label>
+        <input type="text" id="director" class="form-control" ng-model="director" name="director" required/><span class="text-danger" ng-if="new_movie.director.$invalid && new_movie.director.$dirty">  Syötä ohjaajan nimi</span>
+    </div>
+    <div class="form-group">
+        <label for="year">Julkaisuvuosi</label>
+        <input type="number" min="1878" step="1" id="year" class="form-control" ng-model="year" name="year" required publicationyear /><span class="text-danger" ng-if="new_movie.year.$invalid && new_movie.year.$dirty">  Syötä julkaisuvuosi (1878 - kuluva vuosi)</span>
+    </div>
+    <div class="form-group">
+        <label for="description">Kuvaus</label>
+        <textarea id="description" rows="3" class="form-control" ng-model="description" name="description" required /></textarea><span class="text-danger" ng-if="new_movie.description.$invalid && new_movie.description.$dirty">  Syötä kuvaus</span>
+    </div>
+    <button type="submit" ng-click="addMovie()" class="btn btn-primary" ng-disabled="new_movie.$invalid">Lisää</button>
 </form>

@@ -1,24 +1,32 @@
 <h1>Hae elokuvaa nimellä ja julkaisuvuodella</h1>
 <form name="search_form">
-    <label for="title">Nimi</label>
-    <input name="title" id="title" type="text" ng-model="name" /><br/>
-    <label for="year">Vuosi</label>
-    <input name="year" id="year" type="text" ng-model="year" /><br />
-    <button ng-click="findMovie()">Search</button>
+    <div class="form-group">
+        <label for="title">Nimi</label>
+        <input name="title" class="form-control" id="title" type="text" ng-model="name" /><br/>
+    </div>        
+    <div class="form-group">
+        <label for="year">Julkaisuvuosi</label>
+        <input name="year" class="form-control" id="year" type="text" ng-model="year" /><br />
+    </div>
+    <button class="btn btn-primary" ng-click="findMovie()">Hae</button>
 </form>
-<p ng-if="movies == null && !searchOn;">Hakusanalla ei löytynyt elokuvia</p>
-<p ng-if="searchOn">Haku käynnissä, odota hetki</p>
-<p ng-if="searchTime > 9;">Haku kestää yllättävän kauan.<br/> Jostain syystä en ole saanut hakua vielä toimimaan Herokussa, vaikka se toimiikin moitteettomasti kehitysympäristössä. Ärsyttävää... <br>Jos osaat sanoa syyn, pistä vaikka <a href="mailto:petri.j.kallio@helsinki.fi?Subject=OMDb-haku%20ei%20toimi%20Herokussa">maililla</a>.</p>
+<p class="text-danger" ng-if="movies == null && !searchOn;">Hakusanalla ei löytynyt elokuvia</p>
+<p class="text-primary" ng-if="searchOn">Haku käynnissä, odota hetki</p>
+<p class="bg-warning error-message" ng-if="searchTime > 9;">Haku kestää yllättävän kauan.<br/> Jostain syystä en ole saanut hakua vielä toimimaan Herokussa, vaikka se toimiikin moitteettomasti kehitysympäristössä. Ärsyttävää... <br>Jos osaat sanoa syyn, pistä vaikka <a href="mailto:petri.j.kallio@helsinki.fi?Subject=OMDb-haku%20ei%20toimi%20Herokussa">maililla</a>.</p>
 <div id='search_result' ng-if="movies.length > 0 && !searchOn;">
-    <p>Haulla löytyi {{movies.length}} <ng-pluralize count="movies.length" when="{'one': 'elokuva', 'other': 'elokuvaa'}"></ng-pluralize></p>
-    <table>
-        <tr>
-            <th>Nimi</th>
-            <th>Vuosi</th>
-        </tr>
-        <tr ng-repeat="movie in movies | orderBy: 'name'">
-            <td><a ng-href="http://www.imdb.com/title/{{movie.imdbID}}" target="_blank">{{movie.Title}}</a></td>
-            <td>{{movie.Year}}</td>
-        </tr>
+    <h3>Haulla löytyi {{movies.length}} <ng-pluralize count="movies.length" when="{'one': 'elokuva', 'other': 'elokuvaa'}"></ng-pluralize></h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nimi</th>
+                <th>Julkaisuvuosi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="movie in movies | orderBy: 'name'">
+                <td><a ng-href="http://www.imdb.com/title/{{movie.imdbID}}" target="_blank">{{movie.Title}}</a></td>
+                <td>{{movie.Year}}</td>
+            </tr>
+        </tbody>
     </table>
 </div>

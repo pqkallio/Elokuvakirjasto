@@ -2,3 +2,12 @@
     color: rgb(200, 0, 0);
     font-style: italic;
 }
+
+#templates {
+    padding-left: 2em;
+}
+
+.error-message {
+    padding: 1em 2em 1em 2em;
+    border-radius: 10px;
+}
